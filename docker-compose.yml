@@ -1,0 +1,42 @@
+services:
+  phone:
+    build: ./phone
+    networks:
+      test_network:
+        ipv4_address: 10.0.0.193
+    cap_add:
+      - NET_ADMIN
+
+  destination:
+    build: ./destination
+    networks:
+      test_network:
+        ipv4_address: 10.0.0.187
+    cap_add:
+      - NET_ADMIN
+
+
+  middlebox:
+    build: ./middlebox
+    networks:
+      test_network:
+        ipv4_address: 10.0.0.230
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+
+  attacker:
+    build: ./attacker
+    networks:
+      test_network:
+        ipv4_address: 10.0.0.111
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+
+networks:
+  test_network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.0.0.0/8
