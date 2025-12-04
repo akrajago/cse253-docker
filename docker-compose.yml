@@ -4,17 +4,12 @@ services:
     networks:
       test_network:
         ipv4_address: 10.0.0.193
-    cap_add:
-      - NET_ADMIN
 
   destination:
     build: ./destination
     networks:
       test_network:
         ipv4_address: 10.0.0.187
-    cap_add:
-      - NET_ADMIN
-
 
   middlebox:
     build: ./middlebox
