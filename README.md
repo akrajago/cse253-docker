@@ -29,10 +29,21 @@ In the middlebox container, run `tcpdump`:
 tcpdump -ni eth0 host 10.0.0.193 or host 10.0.0.187
 ```
 
+To generate a pcap file, run:
+```shell
+tcpdump -ni eth0 host 10.0.0.193 or host 10.0.0.187 -w <pcap_name>
+```
+
 In the attacker container, run the spoofing script:
 ```shell
 python3 spoof_tcp.py
 ```
+
+To export a pcap file to your local machine, run:
+```shell
+docker cp <middlebox_container_name>:<path_to_pcap_in_container> <local_machine_destination>
+```
+in your local shell.
 
 ## Cleanup
 To stop `tcpdump`, enter `ctrl+C`. To exit the containers, enter `ctrl+D`.
